@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamaica RP - FiveM Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+            color: #e8edf5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(99, 179, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(147, 197, 253, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(191, 219, 254, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        header {
+            position: relative;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(99, 179, 237, 0.1);
+            transform-style: preserve-3d;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(99, 179, 237, 0.05) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        header h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 50%, #dbeafe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(96, 165, 250, 0.3);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.4)); }
+            50% { filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.6)); }
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.5rem 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #60a5fa, #93c5fd);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .links-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 24px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .links-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .links-section h2 {
+            color: #f1f5f9;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-bottom: 2px solid rgba(96, 165, 250, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .link-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2), 0 0 60px rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.4);
+        }
+
+        .link-card h3 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .link-card a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .link-card a:hover {
+            color: #60a5fa;
+        }
+
+        .section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #f1f5f9;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-bottom: 2px solid rgba(96, 165, 250, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .section h3 {
+            color: #93c5fd;
+            margin-top: 2rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .section ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .section p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%);
+            border-left: 4px solid #ef4444;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .info {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-left: 4px solid #60a5fa;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(96, 165, 250, 0.2);
+        }
+
+        footer {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            color: #94a3b8;
+            margin: 0.5rem 0;
+        }
+
+        .zero-tolerance {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.15) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .zero-tolerance h3 {
+            color: #fca5a5;
+            font-size: 1.8rem;
+        }
+
+        strong {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section, .links-section {
+                padding: 1.5rem;
+            }
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.4));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .link-card:hover .card-icon {
+            animation: float 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <header>
+        <h1>🇯🇲 JAMAICA RP</h1>
+        <p>Premium FiveM Roleplay Experience</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#links">Quick Links</a></li>
+            <li><a href="#general">General Rules</a></li>
+            <li><a href="#failrp">Fail RP</a></li>
+            <li><a href="#robberies">Robberies</a></li>
+            <li><a href="#police">Police Rules</a></li>
+            <li><a href="#clothing">Clothing</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Quick Links Section -->
+        <div id="links" class="links-section">
+            <h2>🔗 Quick Links</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <span class="card-icon">📱</span>
+                    <h3>Main Discord</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">🚓</span>
+                    <h3>Police Department</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">🚑</span>
+                    <h3>EMS Department</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">🏠</span>
+                    <h3>Real Estate</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">💼</span>
+                    <h3>Business Applications</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">🎭</span>
+                    <h3>Gang Applications</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">📋</span>
+                    <h3>Whitelisting</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">🎫</span>
+                    <h3>Support Tickets</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">📖</span>
+                    <h3>Server Guide</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+                <div class="link-card">
+                    <span class="card-icon">💰</span>
+                    <h3>Donation Store</h3>
+                    <a href="#">Link to be added later</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- General Rules -->
+        <div id="general" class="section">
+            <h2>📜 General Rules</h2>
+            <div class="warning">
+                <strong>Important:</strong> The server is not liable for any adult content, language, or interactions you may encounter.
+            </div>
+            <ul>
+                <li><strong>DO NOT DM staff</strong> for support or server-related inquiries. Instead, open a support ticket so the staff team can assist effectively. If you are in-game, use /report to contact an admin.</li>
+                <li>Consistent rule-breaking or toxic behavior will result in a ban, at the discretion of the staff.</li>
+                <li>Respect the community and other players. Trolling or intentionally harassing others in-character is prohibited.</li>
+                <li><strong>Zero tolerance:</strong> Harassment, racism, sexism, toxicity, "must-win" attitudes, or any form of hate speech is strictly prohibited. This applies across Discord, in-game interactions, and players' personal streams.</li>
+                <li>The use of slurs, including any variation of the "N" and "R" words, is a <strong>zero-tolerance offense</strong>.</li>
+                <li>Be considerate of others' roleplay! The goal is to create immersive and enjoyable scenarios for all players.</li>
+                <li><strong>Using third-party voice communication</strong> (e.g., Discord, private calls) while in FiveM is strictly prohibited. All in-character communication must take place in the server.</li>
+                <li>Loophole exploitation is strictly prohibited. If you attempt to work around the rules in bad faith, staff will review the situation and determine the appropriate action.</li>
+                <li>Exploiting game mechanics or using bugs for personal gain is a bannable offense. Report any discovered exploits to the developers immediately.</li>
+                <li>No griefing. Continually targeting or attacking a player after a previous RP resolution is considered harassment.</li>
+                <li>If you witness a rule break, do not break character. Complete the scenario first, then submit a player report ticket.</li>
+                <li><strong>Ban evasion is strictly prohibited.</strong> If you have been banned, ask a staff member to create a ban appeal ticket.</li>
+            </ul>
+        </div>
+
+        <!-- Zero Tolerance Section -->
+        <div class="zero-tolerance">
+            <h3>🚫 Zero Tolerance for Disrespect Toward Women</h3>
+            <p>Jamaica RP prioritizes an inclusive and respectful roleplay environment. Any form of harassment, discrimination, or inappropriate behavior targeting women will result in immediate action.</p>
+            <ul>
+                <li>✔️ No Verbal Harassment - No offensive or degrading remarks</li>
+                <li>✔️ No disrespectful language towards female players</li>
+                <li>✔️ No Inappropriate Behavior - No unwanted advances or suggestive jokes</li>
+                <li>✔️ No RP scenarios that demean women</li>
+                <li>✔️ Consent is required for sensitive RP topics</li>
+            </ul>
+        </div>
+
+        <!-- Fail RP & Roleplay Guidelines -->
+        <div id="failrp" class="section">
+            <h2>⚠️ Fail RP & Roleplay Guidelines</h2>
+            
+            <h3>Meta Gaming (First-Offense Ban)</h3>
+            <p>Meta gaming is using OOC (out-of-character) knowledge to influence in-game decisions. Examples include:</p>
+            <ul>
+                <li>Watching live streams or VODs to gain knowledge about characters or locations.</li>
+                <li>Using information from Discord OOC chats in-game.</li>
+            </ul>
+
+            <h3>Power Gaming (Strictly Prohibited)</h3>
+            <p>Power gaming is using unrealistic methods to gain an advantage in RP scenarios. Examples include:</p>
+            <ul>
+                <li>Abusing game mechanics or exploits for unfair advantages.</li>
+                <li>Hiding in a house/apartment instance to avoid an active roleplay situation.</li>
+                <li>Using unrelated characters from different gangs, groups, or investigations to benefit your primary character.</li>
+                <li>Logging out before a scenario concludes, especially when placed in a 48-hour coma to avoid handing over items.</li>
+            </ul>
+
+            <h3>Combat-Related Fail RP</h3>
+            <ul>
+                <li><strong>RDM (Random Deathmatch) & VDM (Vehicle Deathmatch)</strong> are strictly prohibited.</li>
+                <li>Running over or shooting a player without proper roleplay buildup is considered Fail RP.</li>
+                <li>Hitman RP must be properly roleplayed. The target must have some knowledge that this may be happening.</li>
+                <li>Running people over in any instance = VDM.</li>
+                <li>All conflict must be initiated verbally. Attacking without proper communication is Fail RP.</li>
+                <li><strong>Combat logging is prohibited.</strong> If your game crashes, you are required to return and finish the scenario.</li>
+                <li>Misusing player-based menus for IC (in-character) advantages is prohibited.</li>
+                <li>Eavesdropping through walls is not allowed. Players can only use information if they are physically present in the same room or area.</li>
+                <li><strong>Pre-combat communication is required.</strong> Before a gunfight or attack, you must use phone messages, LifeInvader, Birdy, or other means of IC communication.</li>
+            </ul>
+
+            <h3>Additional RP Guidelines</h3>
+            <ul>
+                <li>Forgery of medical/legal documents for court RP is power gaming and not allowed.</li>
+                <li>All injuries, medical documents, and legal evidence must be roleplayed at the time of the incident.</li>
+                <li>Do not interfere with other players' RP unless you have a valid reason.</li>
+                <li>Do not perform unrealistic actions (dropping items while handcuffed, using a phone/radio while tied up, stacking more than two people on a motorcycle).</li>
+            </ul>
+        </div>
+
+        <!-- Discord & Communication Rules -->
+        <div class="section">
+            <h2>💬 Discord & Communication Rules</h2>
+            
+            <h3>Discord Guidelines</h3>
+            <ul>
+                <li>Players must set their Discord nickname to match their in-game character name(s).</li>
+                <li>Toxicity, drama, or harassment in OOC chat is prohibited.</li>
+                <li><strong>DO NOT DM staff members</strong> for support or inquiries! Always use the appropriate ticket system.</li>
+            </ul>
+
+            <h3>Voice Communication Rules</h3>
+            <ul>
+                <li>IC (In-Character) conversations must be in-game.</li>
+                <li>If you're interacting with someone in-game, mute/deafen yourself in Discord to maintain RP immersion.</li>
+                <li>Third-party voice chats (Discord calls, Teamspeak, etc.) for IC communication are prohibited.</li>
+            </ul>
+
+            <h3>Radio & Phone Use Rules</h3>
+            <ul>
+                <li>Radios cannot be used while handcuffed or otherwise restrained.</li>
+                <li>Phones cannot be accessed while tied up or unconscious.</li>
+            </ul>
+
+            <h3>OOC Chat Misuse</h3>
+            <ul>
+                <li>Do not spam OOC chat or use it for IC purposes.</li>
+                <li>OOC chat is only for brief clarifications, not extended discussions.</li>
+            </ul>
+        </div>
+
+        <!-- Robberies -->
+        <div id="robberies" class="section">
+            <h2>💰 Robberies</h2>
+            <ul>
+                <li>Players can only be robbed of belongings and money on their person, not from their bank account.</li>
+                <li><strong>No pocket wipes:</strong> You cannot steal every item from a player's inventory. Stolen items must make sense for roleplay.</li>
+                <li>Players must be held up (hands up) to be robbed.</li>
+                <li>Camping job sites to steal materials is prohibited, but kidnapping from job sites is allowed.</li>
+                <li>Only the criminals who initiated the robbery can participate. No external help is permitted.</li>
+                <li>Motorcycles may not be parked inside buildings.</li>
+                <li>Criminals can only use motorcycles during crimes if at least three police officers are on duty.</li>
+                <li>Using a personal vehicle in a robbery results in higher impound fees and a 1-4 hour hold on the vehicle.</li>
+            </ul>
+
+            <h3>Kidnappings & Hostages</h3>
+            <ul>
+                <li>Police officers can only be kidnapped if four or more officers are on duty.</li>
+                <li>Civilians can be kidnapped even if no police are online.</li>
+                <li>Hostages cannot be held for more than 20 minutes unless all parties agree to an extended RP scenario.</li>
+                <li>Repeatedly robbing or kidnapping the same player is considered griefing.</li>
+                <li>Hostages cannot be carried on motorcycles.</li>
+                <li><strong>Hostages must be random players</strong>—no pre-arranged scenarios with friends. Violations will result in punishment.</li>
+            </ul>
+
+            <h3>ATM & Bank Robberies</h3>
+            <ul>
+                <li>ATM Robberies: If conducting with multiple people, a seated vehicle (not bikes) is required.</li>
+                <li>No abandoning an ATM robbery to start another—this is an exploit.</li>
+                <li>Bank Heists (FLEECA, Big Bank, Paleto, etc.) require hostages—no negotiations without one.</li>
+                <li>Solo robberies (houses, stores, ATMs, jewelry stores) do not require hostages.</li>
+                <li>Hostages must be random—no staged scenarios with friends or associates.</li>
+            </ul>
+
+            <h3>Hostage Rules</h3>
+            <ul>
+                <li>Hostages must be held at gunpoint at all times. If unguarded, police may retrieve them without negotiation.</li>
+                <li>No holding hostages during robbery cooldowns—release them and leave the area.</li>
+                <li>Proof of life must be provided to law enforcement in person.</li>
+            </ul>
+        </div>
+
+        <!-- Police & Criminal Rules -->
+        <div id="police" class="section">
+            <h2>🚓 Police-Specific Rules</h2>
+            <ul>
+                <li>Officers should issue tickets to players loitering excessively in one location.</li>
+                <li>Without bodycam footage, officers are treated as civilians in reports—no evidence means admin discretion applies.</li>
+                <li>Officers entering an active gang battle event may be shot on sight.</li>
+            </ul>
+
+            <h3>Corruption Rules</h3>
+            <ul>
+                <li>Low-level corruption (small bribes) is only allowed for officers below Sergeant rank.</li>
+                <li>No corruption is permitted for on-duty EMS or police.</li>
+                <li>Selling police-issued weapons, tools, or evidence is strictly forbidden and results in an OOC strike and in-character termination.</li>
+            </ul>
+
+            <h3>Interacting with Police</h3>
+            <div class="info">
+                <strong>Roleplay (RP) is mandatory once PD is present.</strong>
+            </div>
+            <ul>
+                <li>Treat RP as you would like to receive it.</li>
+                <li>Not every encounter should turn into a high-speed chase. Stop when required.</li>
+                <li>If you break out of cuffs or escape, you are allowed to shoot.</li>
+                <li>Police aiming a lethal weapon at you is initiation. (Tasers are not lethal.)</li>
+                <li>After two taser attempts, you are allowed to shoot at PD.</li>
+                <li>If you intend to shoot at PD, you must give them a chance to pull their weapons out.</li>
+            </ul>
+
+            <h3>Police Actions</h3>
+            <ul>
+                <li><strong>Criminals Pointing Guns:</strong> If you point a gun at a police officer or another person – you have initiated conflict and police can shoot you.</li>
+                <li><strong>Shooting Tires:</strong> Police can shoot vehicle tires if the vehicle is about to be used in an escape attempt.</li>
+                <li><strong>Hostage Situations:</strong> If a hostage taker does not give clear demands, police must act to save the hostage with lethal force.</li>
+                <li><strong>Stealing Police Property:</strong> Attempting to steal a police cruiser or weapon = you can be shot.</li>
+                <li><strong>Spike Strips:</strong> Police can use spike strips in pursuits. Vehicles can be preemptively spiked if parked illegally & confirmed to be used in a crime.</li>
+            </ul>
+
+            <h3>Warrants, Searches & Arrests</h3>
+            <ul>
+                <li>If you committed a felony or have a warrant, police can enter your owned property.</li>
+                <li>Vehicle searches require no warrant—only probable cause needed.</li>
+                <li>Not being read your rights = arrest still valid, but any questioning done without Miranda cannot be used in court.</li>
+            </ul>
+        </div>
+
+        <!-- Criminal Rules -->
+        <div class="section">
+            <h2>🔫 Criminal-Specific Rules</h2>
+            <ul>
+                <li>No camping or claiming drug labs, money laundering spots, or black market locations.</li>
+                <li>No targeting EMS for doing their jobs (e.g., reporting injured criminals). Personal conflicts are allowed.</li>
+                <li>No hiding in garages/apartments to evade police chases—this results in a strike.</li>
+                <li>Cop baiting (harassing officers or forcing chases) is prohibited.</li>
+                <li>/scene cannot be used as graffiti—only spray cans are allowed for tagging.</li>
+                <li>No vulgar or hate speech via /scene.</li>
+                <li>Shooting at public officials (EMS, police) increases maximum jail time to 20 months at the officer's discretion.</li>
+                <li>Criminals must fear police presence—no lingering at crime scenes after a warning.</li>
+            </ul>
+
+            <h3>Returning to RP Scenes</h3>
+            <ul>
+                <li>Players cannot return to a previous RP scene once they have fully left it.</li>
+                <li>If police are downed and being rescued, criminals cannot return to re-engage.</li>
+                <li>If downed and receiving medical RP, you are out of the scenario and cannot rejoin.</li>
+                <li>Clearing the scene means traveling more than one block away and breaking line of sight without being followed.</li>
+            </ul>
+        </div>
+
+        <!-- Vehicle Rules -->
+        <div class="section">
+            <h2>🚗 Vehicle Rules</h2>
+            <ul>
+                <li>Players cannot steal EMS or police vehicles.</li>
+                <li>Police-issued weapons cannot be robbed from officers, but criminals may keep weapons taken from other criminals.</li>
+                <li>If police successfully pit and box-in a criminal's vehicle, the getaway car must stop. Criminals may flee on foot, carjack another vehicle, or initiate a shootout.</li>
+                <li>Criminals cannot ram their way out of a police box-in.</li>
+            </ul>
+
+            <h3>Police Evasion Rules</h3>
+            <ul>
+                <li>You cannot evade police without a valid reason (e.g., an active warrant). Speeding alone is not justification.</li>
+                <li>No outside help is allowed—only those originally involved in the crime may participate in the chase.</li>
+                <li>Drive realistically—no off-roading in supercars, ramp jumps, or unrealistic maneuvers.</li>
+            </ul>
+
+            <h3>1/1 Vehicle Transfer Rules</h3>
+            <ul>
+                <li>All 1/1 vehicles are permanently bound to their original purchaser and cannot be sold, traded, or gifted under normal circumstances.</li>
+                <li>Exception: If you wish to transfer ownership of a 1/1 vehicle, you must submit a transfer request ticket in the server's Discord.</li>
+            </ul>
+        </div>
+
+        <!-- Green-Zones & Territories -->
+        <div class="section">
+            <h2>🟢 Green-Zones & Safe Zones</h2>
+            <div class="warning">
+                <strong>Warning:</strong> Killing inside a green-zone results in a character wipe.
+            </div>
+            <ul>
+                <li>Green-zones are always in-character—no OOC exceptions.</li>
+                <li>No green-zone camping.</li>
+                <li>No stealing/robbing vehicles in green-zones.</li>
+                <li>Safe-zones are for social interactions and passive RP only—no loitering.</li>
+                <li>No violence near safe-zones—robberies must be far away to prevent abuse.</li>
+            </ul>
+
+            <h3>List of Green-Zone Locations</h3>
+            <ul>
+                <li>Business locations (may vary)</li>
+                <li>Hospitals (2-block radius)</li>
+                <li>Mall</li>
+                <li>Clothing stores & parking lots (instant 24-hour ban for violence)</li>
+                <li>Gun stores & parking lots</li>
+                <li>All event zones (if posted in Discord)</li>
+                <li>Casino</li>
+                <li>Crafting benches (no camping or robbing)</li>
+                <li>PD impound lot</li>
+            </ul>
+        </div>
+
+        <!-- Clipping Rules -->
+        <div class="section">
+            <h2>🎥 CLIPPING RULES</h2>
+            <div class="warning">
+                <strong>No clip, no sit – proof is REQUIRED for reports.</strong>
+            </div>
+            <ul>
+                <li>Clipping software is required—you MUST have recording software installed (e.g., Medal.tv or GeForce Experience).</li>
+                <li>All clips must include audio from both parties.</li>
+                <li>Your microphone audio must be included.</li>
+                <li>Reports without full audio will be voided.</li>
+                <li>Clips must be at least 1-2 minutes long (or longer).</li>
+            </ul>
+        </div>
+
+        <!-- Clothing Rules -->
+        <div id="clothing" class="section">
+            <h2>👕 CLOTHING RULES</h2>
+            <ul>
+                <li>Bulletproof helmets are not allowed due to unfair advantage.</li>
+                <li>Gang clothing (bandanas, flags, etc.) may only be worn by actual gang members.</li>
+                <li>Police/EMS clothing (vests, hats, belts, shirts) may only be worn by those in those roles.</li>
+                <li>Character model glitches (missing arms, half arms, etc.) are not permitted.</li>
+            </ul>
+        </div>
+
+        <!-- Admin Sit Rules -->
+        <div class="section">
+            <h2>⚖️ Admin Sit Rules</h2>
+            <ul>
+                <li>Do not interfere in another player's admin sit—doing so may result in punishment.</li>
+                <li>Only the reporting player should speak when an admin is handling the case.</li>
+                <li>Follow admin instructions immediately—failure to comply will result in penalties.</li>
+                <li>Video evidence is required for reports—submit clips via Discord tickets.</li>
+                <li>Disrespecting admins will lead to bans or jail time.</li>
+                <li>Spamming /reports will result in a kick, then a ban if repeated.</li>
+                <li>Admins may confiscate illegal items if rules are broken.</li>
+            </ul>
+        </div>
+
+        <!-- Money & Anti-Cheat Rules -->
+        <div class="section">
+            <h2>💵 Money & Anti-Cheat Rules</h2>
+            <ul>
+                <li>Always deposit cash in the bank—money lost in pockets or vehicles will not be refunded.</li>
+                <li>Carrying large amounts of cash (clean or dirty) increases the risk of anti-cheat deletion.</li>
+                <li>Only bank-stored money is eligible for reimbursement.</li>
+            </ul>
+
+            <h3>1/1 Firearm Rules</h3>
+            <ul>
+                <li>Only the original purchaser may own a 1/1 gun—unauthorized possession is punishable.</li>
+                <li>Selling, gifting, or transferring 1/1 guns is strictly prohibited.</li>
+                <li>To verify ownership, submit a clear photo of the gun via a Discord ticket.</li>
+                <li>All should have a WL from CPD.</li>
+                <li>Do not submit tickets for broken or depleted weapons. Repairs must be handled in-character (RP) through gun repair services.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jamaica RP - All Rights Reserved</p>
+        <p>Premium FiveM Roleplay Server - Serious RP Community</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Add parallax effect to cards
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.link-card, .section');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            cards.forEach((card, index) => {
+                const speed = (index % 3 + 1) * 2;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                card.style.transform = `perspective(1000px) rotateY(${xOffset}deg) rotateX(${-yOffset}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
