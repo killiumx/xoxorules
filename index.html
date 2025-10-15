@@ -3,14 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XOXO RP - City Donations & Custom Purchases</title>
-    
-    <meta property="og:title" content="XOXO RP - Support the City">
-    <meta property="og:description" content="Unlock exclusive perks while keeping the city running">
-    <meta property="og:image" content="https://i.imgur.com/8JZm3Ql.png">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#FF69B4">
-    
+    <title>XOXO RP - Server Rules & Guidelines</title>
     <style>
         * {
             margin: 0;
@@ -26,9 +19,8 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E9 50%, #FFD4E0 100%);
             color: #2d1b2e;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
-            position: relative;
         }
 
         /* 3D Animated Background */
@@ -40,10 +32,10 @@
             height: 100%;
             z-index: 0;
             background: 
-                radial-gradient(ellipse at 20% 30%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, rgba(255, 20, 147, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 179, 217, 0.1) 0%, transparent 50%);
-            animation: bgShift 20s ease-in-out infinite;
+                radial-gradient(ellipse at 15% 25%, rgba(255, 105, 180, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 75%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 179, 217, 0.08) 0%, transparent 50%);
+            animation: bgPulse 25s ease-in-out infinite;
         }
 
         .animated-bg::before {
@@ -53,771 +45,444 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 105, 180, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 30s linear infinite;
-            transform: perspective(500px) rotateX(60deg);
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.06) 2px, transparent 2px);
+            background-size: 60px 60px;
+            animation: gridFloat 35s linear infinite;
+            transform: perspective(600px) rotateX(65deg);
         }
 
-        @keyframes bgShift {
+        @keyframes bgPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.05); }
+            50% { opacity: 0.85; transform: scale(1.08); }
         }
 
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        @keyframes gridFloat {
+            0% { transform: perspective(600px) rotateX(65deg) translateY(0); }
+            100% { transform: perspective(600px) rotateX(65deg) translateY(60px); }
         }
 
-        /* Navigation with 3D depth */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 75px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 3px solid #FF69B4;
-            box-shadow: 
-                0 10px 30px rgba(255, 105, 180, 0.2),
-                0 4px 10px rgba(255, 20, 147, 0.1),
-                inset 0 -1px 0 rgba(255, 105, 180, 0.3);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateZ(0);
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            height: 70px;
-            box-shadow: 
-                0 15px 40px rgba(255, 105, 180, 0.25),
-                0 5px 15px rgba(255, 20, 147, 0.15);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform-style: preserve-3d;
-        }
-
-        .brand:hover {
-            transform: translateY(-3px) scale(1.05) rotateX(5deg);
-        }
-
-        .brand-icon {
-            font-size: 36px;
-            filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.5))
-                    drop-shadow(0 2px 5px rgba(255, 20, 147, 0.3));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-            50% { transform: translateY(-8px) rotateZ(5deg); }
-        }
-
-        .brand-name {
-            font-size: 26px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #FF1493 0%, #FF69B4 50%, #FFB3D9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 1.5px;
-            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+        /* Hero Header with 3D depth */
+        .hero-header {
             position: relative;
-        }
-
-        .brand-name::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #FF1493, #FF69B4);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .brand:hover .brand-name::after {
-            transform: scaleX(1);
-        }
-
-        /* Hero Section with 3D elements */
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding-top: 75px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 240, 245, 0.95));
+            backdrop-filter: blur(25px);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #FF69B4;
+            box-shadow: 
+                0 15px 50px rgba(255, 105, 180, 0.25),
+                0 8px 20px rgba(255, 20, 147, 0.15),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
             overflow: hidden;
         }
 
-        .hero::before {
+        .hero-header::before {
             content: '💎';
             position: absolute;
-            font-size: 300px;
-            opacity: 0.05;
+            font-size: 250px;
+            opacity: 0.04;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotateZ(15deg);
-            animation: pulse 4s ease-in-out infinite;
+            transform: translate(-50%, -50%) rotateZ(20deg);
+            animation: heroPulse 5s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) rotateZ(15deg) scale(1); }
-            50% { transform: translate(-50%, -50%) rotateZ(15deg) scale(1.1); }
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            max-width: 950px;
-            padding: 60px 30px;
-            transform-style: preserve-3d;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.9));
-            border: 2px solid #FF69B4;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 800;
-            color: #FF1493;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: 
-                0 8px 25px rgba(255, 105, 180, 0.3),
-                0 4px 10px rgba(255, 20, 147, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            animation: badgeBounce 2s ease-in-out infinite;
-            transform: translateZ(20px);
-        }
-
-        @keyframes badgeBounce {
-            0%, 100% { transform: translateZ(20px) translateY(0); }
-            50% { transform: translateZ(20px) translateY(-5px); }
+        @keyframes heroPulse {
+            0%, 100% { transform: translate(-50%, -50%) rotateZ(20deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotateZ(20deg) scale(1.15); }
         }
 
         .hero-title {
-            font-size: 68px;
-            font-weight: 900;
+            font-size: 4.5rem;
             background: linear-gradient(135deg, #FF1493 0%, #FF69B4 50%, #FFB3D9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 25px;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            text-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
-            transform: translateZ(30px);
-            animation: titleFloat 3s ease-in-out infinite;
+            font-weight: 900;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            animation: titleFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 6px 20px rgba(255, 105, 180, 0.25));
         }
 
         @keyframes titleFloat {
-            0%, 100% { transform: translateZ(30px) translateY(0); }
-            50% { transform: translateZ(30px) translateY(-10px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.02); }
         }
 
         .hero-subtitle {
-            font-size: 22px;
+            font-size: 1.4rem;
             color: #FF1493;
-            margin-bottom: 40px;
+            margin-top: 1rem;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
-        }
-
-        .hero-description {
-            font-size: 18px;
-            color: #6d4c7d;
-            line-height: 1.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Main Content */
-        .content-section {
             position: relative;
-            padding: 90px 30px;
             z-index: 1;
         }
 
-        .container {
-            max-width: 1250px;
+        /* Navigation with 3D effects */
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 240, 245, 0.96));
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #FFB3D9;
+            box-shadow: 
+                0 8px 30px rgba(255, 105, 180, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .nav-bar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav-bar a {
+            color: #6d4c7d;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.3rem;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-bar a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            border-radius: 25px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-bar a:hover {
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .nav-bar a:hover::before {
+            opacity: 1;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
+        /* Quick Links Grid with 3D cards */
+        .quick-links-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 228, 233, 0.92));
+            backdrop-filter: blur(20px);
+            padding: 3.5rem;
+            border-radius: 30px;
+            margin-bottom: 4rem;
+            border: 3px solid #FFB3D9;
+            box-shadow: 
+                0 25px 60px rgba(255, 105, 180, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
             transform-style: preserve-3d;
-        }
-
-        .section-icon {
-            font-size: 56px;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 8px 20px rgba(255, 105, 180, 0.4));
-            animation: iconRotate 4s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes iconRotate {
-            0%, 100% { transform: rotateY(0deg); }
-            50% { transform: rotateY(180deg); }
         }
 
         .section-title {
-            font-size: 46px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: -0.8px;
-            text-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
-        }
-
-        .section-description {
-            font-size: 19px;
-            color: #6d4c7d;
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* Info Cards with 3D depth */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 228, 233, 0.9));
-            border: 2px solid #FFB3D9;
-            border-radius: 25px;
-            padding: 35px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 
-                0 10px 30px rgba(255, 105, 180, 0.15),
-                0 4px 10px rgba(255, 20, 147, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform-style: preserve-3d;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-        }
-
-        .info-card:hover::before {
-            top: -30%;
-            left: -30%;
-        }
-
-        .info-card:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 240, 245, 0.95));
-            border-color: #FF69B4;
-            transform: translateY(-10px) rotateX(5deg) scale(1.02);
-            box-shadow: 
-                0 25px 50px rgba(255, 105, 180, 0.25),
-                0 10px 20px rgba(255, 20, 147, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
-        }
-
-        .info-card-icon {
-            font-size: 42px;
-            margin-bottom: 18px;
-            display: block;
-            filter: drop-shadow(0 4px 10px rgba(255, 105, 180, 0.3));
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-card h3 {
-            font-size: 22px;
-            color: #FF1493;
-            margin-bottom: 12px;
-            font-weight: 800;
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-card p {
-            color: #6d4c7d;
-            line-height: 1.8;
-            font-size: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Pricing Container with 3D effects */
-        .pricing-container {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9));
-            border: 3px solid #FF69B4;
-            border-radius: 30px;
-            padding: 45px;
-            backdrop-filter: blur(15px);
-            margin-bottom: 60px;
-            box-shadow: 
-                0 20px 50px rgba(255, 105, 180, 0.2),
-                0 8px 20px rgba(255, 20, 147, 0.15),
-                inset 0 2px 0 rgba(255, 255, 255, 0.5);
-            transform: translateZ(0);
-            transition: all 0.3s ease;
-        }
-
-        .pricing-container:hover {
-            box-shadow: 
-                0 25px 60px rgba(255, 105, 180, 0.25),
-                0 10px 25px rgba(255, 20, 147, 0.2),
-                inset 0 2px 0 rgba(255, 255, 255, 0.7);
-        }
-
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .pricing-header h3 {
-            font-size: 32px;
+            font-size: 3rem;
             background: linear-gradient(135deg, #FF1493, #FF69B4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 15px;
             font-weight: 900;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            letter-spacing: -0.5px;
         }
 
-        .pricing-header p {
-            color: #6d4c7d;
-            font-size: 17px;
-        }
-
-        .pricing-table-wrapper {
-            overflow-x: auto;
-            margin: 35px 0;
-            border-radius: 15px;
-        }
-
-        .pricing-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        .pricing-table thead {
-            background: linear-gradient(135deg, #FF69B4, #FF1493);
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-        }
-
-        .pricing-table th {
-            padding: 20px;
-            text-align: left;
-            font-weight: 800;
-            color: #ffffff;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            border-bottom: 3px solid #FF1493;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .pricing-table td {
-            padding: 18px 20px;
-            color: #2d1b2e;
-            font-size: 16px;
-            font-weight: 600;
-            border-bottom: 2px solid rgba(255, 105, 180, 0.15);
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .pricing-table tbody tr {
-            transition: all 0.3s ease;
-        }
-
-        .pricing-table tbody tr:hover {
-            background: rgba(255, 179, 217, 0.2);
-            transform: scale(1.01);
-        }
-
-        .pricing-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .price-highlight {
-            color: #FF1493;
-            font-weight: 900;
-            text-shadow: 0 2px 8px rgba(255, 20, 147, 0.3);
-        }
-
-        /* Alert Boxes with 3D depth */
-        .alert-box {
-            padding: 30px;
-            border-radius: 20px;
-            margin: 35px 0;
-            backdrop-filter: blur(10px);
-            display: flex;
-            gap: 18px;
-            align-items: flex-start;
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: translateZ(0);
-            transition: all 0.3s ease;
-        }
-
-        .alert-box:hover {
-            transform: translateY(-3px);
-        }
-
-        .alert-warning {
-            background: linear-gradient(135deg, rgba(255, 228, 233, 0.95), rgba(255, 240, 245, 0.9));
-            border: 2px solid #FF69B4;
-        }
-
-        .alert-info {
-            background: linear-gradient(135deg, rgba(255, 240, 245, 0.95), rgba(255, 228, 233, 0.9));
-            border: 2px solid #FFB3D9;
-        }
-
-        .alert-danger {
-            background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(255, 105, 180, 0.1));
-            border: 3px solid #FF1493;
-        }
-
-        .alert-icon {
-            font-size: 28px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 3px 8px rgba(255, 105, 180, 0.3));
-        }
-
-        .alert-content {
-            flex: 1;
-        }
-
-        .alert-content strong {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #FF1493;
-            font-weight: 800;
-        }
-
-        .alert-content p {
-            color: #6d4c7d;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .alert-content ul {
-            margin: 18px 0 0 25px;
-            color: #6d4c7d;
-        }
-
-        .alert-content li {
-            margin: 10px 0;
-            line-height: 1.7;
-        }
-
-        /* Options Grid with 3D cards */
-        .options-grid {
+        .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
-            margin: 35px 0;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
         }
 
-        .option-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 228, 233, 0.9));
+        .link-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9));
             border: 2px solid #FFB3D9;
-            border-radius: 22px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 
-                0 10px 30px rgba(255, 105, 180, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform-style: preserve-3d;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.12);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
-        .option-card::after {
+        .link-card::after {
             content: '';
             position: absolute;
             top: -50%;
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
-            transform: rotate(-45deg);
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.12) 0%, transparent 70%);
+            transform: rotate(-30deg);
             transition: all 0.6s ease;
         }
 
-        .option-card:hover::after {
-            top: -30%;
-            right: -30%;
+        .link-card:hover::after {
+            top: -25%;
+            right: -25%;
         }
 
-        .option-card:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 240, 245, 0.95));
+        .link-card:hover {
+            transform: translateY(-10px) scale(1.03) rotateX(3deg);
             border-color: #FF69B4;
-            transform: translateY(-8px) rotateX(3deg) scale(1.02);
             box-shadow: 
-                0 20px 40px rgba(255, 105, 180, 0.25),
-                0 8px 15px rgba(255, 20, 147, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+                0 20px 45px rgba(255, 105, 180, 0.25),
+                0 10px 20px rgba(255, 20, 147, 0.15);
         }
 
-        .option-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 18px;
+        .link-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.3));
+            animation: iconBounce 3s ease-in-out infinite;
             position: relative;
             z-index: 1;
         }
 
-        .option-icon {
-            font-size: 32px;
-            filter: drop-shadow(0 4px 10px rgba(255, 105, 180, 0.3));
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0) rotateZ(0deg); }
+            50% { transform: translateY(-8px) rotateZ(10deg); }
         }
 
-        .option-title {
-            font-size: 20px;
-            font-weight: 800;
+        .link-card:hover .link-icon {
+            animation: iconSpin 1s ease-in-out;
+        }
+
+        @keyframes iconSpin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .link-card h3 {
+            font-size: 1.25rem;
             color: #FF1493;
-        }
-
-        .option-description {
-            color: #6d4c7d;
-            font-size: 15px;
-            margin-bottom: 18px;
-            line-height: 1.7;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
             position: relative;
             z-index: 1;
         }
 
-        .option-price {
-            font-size: 22px;
-            font-weight: 900;
+        .link-card a {
+            color: #6d4c7d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-card a:hover {
+            color: #FF69B4;
+        }
+
+        /* Rule Sections */
+        .rule-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 228, 233, 0.92));
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 28px;
+            border: 3px solid #FFB3D9;
+            box-shadow: 
+                0 20px 50px rgba(255, 105, 180, 0.18),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .rule-section:hover {
+            transform: translateY(-6px);
+            box-shadow: 
+                0 25px 60px rgba(255, 105, 180, 0.25),
+                inset 0 2px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .rule-section h2 {
+            font-size: 2.5rem;
             background: linear-gradient(135deg, #FF1493, #FF69B4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
-            z-index: 1;
-        }
-
-        .option-note {
-            margin-top: 10px;
-            font-size: 13px;
-            color: #8b6d9c;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Tone Grid */
-        .tone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .tone-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85));
-            border: 2px solid #FFB3D9;
-            border-radius: 18px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .tone-item:hover {
-            transform: translateY(-5px);
-            border-color: #FF69B4;
-            box-shadow: 0 12px 30px rgba(255, 105, 180, 0.25);
-        }
-
-        .tone-emoji {
-            font-size: 38px;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 3px 8px rgba(255, 105, 180, 0.2));
-        }
-
-        .tone-label {
-            font-size: 16px;
-            font-weight: 800;
-            color: #FF1493;
-            margin-bottom: 10px;
-        }
-
-        .tone-numbers {
-            font-size: 13px;
-            color: #6d4c7d;
-            line-height: 1.6;
-        }
-
-        /* Steps Container */
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin: 45px 0;
-        }
-
-        .step-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9));
-            border: 2px solid #FFB3D9;
-            border-radius: 22px;
-            padding: 35px;
-            backdrop-filter: blur(10px);
-            position: relative;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .step-card:hover {
-            transform: translateY(-5px);
-            border-color: #FF69B4;
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -18px;
-            left: 35px;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #FF1493, #FF69B4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
             font-weight: 900;
-            color: #ffffff;
-            box-shadow: 
-                0 6px 20px rgba(255, 105, 180, 0.4),
-                0 3px 8px rgba(255, 20, 147, 0.3);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid rgba(255, 105, 180, 0.25);
         }
 
-        .step-title {
-            font-size: 20px;
+        .rule-section h3 {
+            color: #FF69B4;
+            font-size: 1.6rem;
             font-weight: 800;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .rule-section ul {
+            margin-left: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rule-section li {
+            margin-bottom: 1rem;
+            color: #4a3456;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .rule-section p {
+            color: #4a3456;
+            margin-bottom: 1.2rem;
+            line-height: 1.9;
+            font-weight: 500;
+        }
+
+        .rule-section strong {
             color: #FF1493;
-            margin-bottom: 12px;
-            margin-top: 15px;
+            font-weight: 800;
         }
 
-        .step-description {
-            color: #6d4c7d;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        /* Support Grid */
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 45px 0;
-        }
-
-        .support-item {
-            text-align: center;
-            padding: 35px 25px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85));
-            border: 2px solid #FFB3D9;
-            border-radius: 20px;
+        /* Alert Boxes */
+        .alert {
+            padding: 1.8rem;
+            border-radius: 18px;
+            margin: 2rem 0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
+            border: 3px solid;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
             transition: all 0.3s ease;
         }
 
-        .support-item:hover {
-            transform: translateY(-5px) scale(1.02);
+        .alert:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.12), rgba(255, 105, 180, 0.08));
+            border-color: #FF1493;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(255, 179, 217, 0.15), rgba(255, 228, 233, 0.1));
             border-color: #FF69B4;
-            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.25);
         }
 
-        .support-icon {
-            font-size: 48px;
-            margin-bottom: 18px;
+        .alert-info {
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.9), rgba(255, 228, 233, 0.85));
+            border-color: #FFB3D9;
+        }
+
+        .alert strong {
             display: block;
-            filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.3));
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            color: #FF1493;
+            font-weight: 900;
         }
 
-        .support-label {
-            font-size: 18px;
-            font-weight: 800;
+        .alert p {
+            margin: 0;
+            color: #4a3456;
+            line-height: 1.8;
+        }
+
+        .alert ul {
+            margin-top: 1rem;
+            margin-left: 1.5rem;
+        }
+
+        .alert li {
+            margin-bottom: 0.6rem;
+            color: #4a3456;
+        }
+
+        /* Zero Tolerance Box */
+        .zero-tolerance-box {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.18), rgba(255, 105, 180, 0.12));
+            border: 4px solid #FF1493;
+            padding: 2.5rem;
+            border-radius: 22px;
+            margin: 2.5rem 0;
+            box-shadow: 
+                0 15px 45px rgba(255, 20, 147, 0.25),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            animation: dangerPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes dangerPulse {
+            0%, 100% { box-shadow: 0 15px 45px rgba(255, 20, 147, 0.25); }
+            50% { box-shadow: 0 20px 55px rgba(255, 20, 147, 0.35); }
+        }
+
+        .zero-tolerance-box h3 {
             color: #FF1493;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 900;
+        }
+
+        .zero-tolerance-box p {
+            color: #2d1b2e;
+            font-weight: 600;
+            line-height: 1.9;
         }
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 228, 233, 0.9));
-            border-top: 3px solid #FF69B4;
-            padding: 60px 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 228, 233, 0.95));
+            backdrop-filter: blur(25px);
             text-align: center;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 -10px 40px rgba(255, 105, 180, 0.2);
+            padding: 3.5rem 2rem;
+            margin-top: 5rem;
+            border-top: 4px solid #FF69B4;
+            box-shadow: 
+                0 -15px 50px rgba(255, 105, 180, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
         }
 
         .footer-brand {
-            font-size: 26px;
+            font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 18px;
-            text-shadow: 0 3px 10px rgba(255, 105, 180, 0.2);
+            margin-bottom: 1rem;
         }
 
         .footer p {
             color: #6d4c7d;
-            margin: 10px 0;
-            font-size: 15px;
-            font-weight: 500;
+            margin: 0.6rem 0;
+            font-weight: 600;
         }
 
-        /* Back to Top with 3D effect */
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 35px;
@@ -830,16 +495,17 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 28px;
+            font-size: 26px;
+            font-weight: 900;
             cursor: pointer;
             opacity: 0;
-            transform: translateY(100px) scale(0.8);
+            transform: translateY(100px) scale(0.7);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 999;
             box-shadow: 
                 0 10px 30px rgba(255, 105, 180, 0.4),
                 0 5px 15px rgba(255, 20, 147, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.6);
         }
 
         .back-to-top.visible {
@@ -848,75 +514,32 @@
         }
 
         .back-to-top:hover {
-            transform: translateY(-8px) scale(1.1) rotateZ(360deg);
+            transform: translateY(-8px) scale(1.12) rotate(360deg);
             box-shadow: 
                 0 15px 40px rgba(255, 105, 180, 0.5),
                 0 8px 20px rgba(255, 20, 147, 0.4);
         }
 
-        .back-to-top:active {
-            transform: translateY(-5px) scale(1.05);
-        }
-
-        /* Two Column Table */
-        .two-column-table {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3px;
-            background: #FF69B4;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
-        }
-
-        .table-cell {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #2d1b2e;
-        }
-
-        .table-cell:nth-child(odd) {
-            border-right: 2px solid #FFB3D9;
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 44px;
+                font-size: 3rem;
             }
 
             .section-title {
-                font-size: 36px;
+                font-size: 2.2rem;
             }
 
-            .two-column-table {
+            .nav-bar ul {
+                gap: 1rem;
+            }
+
+            .rule-section, .quick-links-section {
+                padding: 2rem;
+            }
+
+            .links-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .table-cell:nth-child(odd) {
-                border-right: none;
-                border-bottom: 2px solid #FFB3D9;
-            }
-
-            .navbar {
-                padding: 0 20px;
-                height: 70px;
-            }
-
-            .content-section {
-                padding: 70px 20px;
-            }
-
-            .pricing-container {
-                padding: 30px;
-            }
-
-            .brand-name {
-                font-size: 22px;
             }
 
             .back-to-top {
@@ -926,518 +549,452 @@
                 right: 25px;
             }
         }
-
-        /* Additional 3D hover effects */
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
-        .pricing-table tbody tr:hover td {
-            background: linear-gradient(90deg, 
-                rgba(255, 179, 217, 0.2) 0%, 
-                rgba(255, 105, 180, 0.3) 50%, 
-                rgba(255, 179, 217, 0.2) 100%);
-            background-size: 1000px 100%;
-            animation: shimmer 2s infinite;
-        }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
 
-    <!-- Navigation -->
-    <header class="navbar" id="navbar">
-        <a href="#hero" class="brand">
-            <div class="brand-icon">🇯🇲</div>
-            <div class="brand-name">XOXO RP</div>
-        </a>
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <h1 class="hero-title">🇯🇲 XOXO RP</h1>
+        <p class="hero-subtitle">Elite FiveM Roleplay Community</p>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>💎</span>
-                Support the City
-            </div>
-            <h1 class="hero-title">City Donations & Custom Purchases</h1>
-            <p class="hero-subtitle">Make it yours — keep the city thriving</p>
-            <p class="hero-description">
-                Your donations power our infrastructure, optimization, and exclusive features. Unlock custom perks like skins, vehicles, chains, and MLOs — all within FiveM & CFX TOS guidelines.
-            </p>
-        </div>
-    </section>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="#links">Quick Access</a></li>
+            <li><a href="#community">Community Standards</a></li>
+            <li><a href="#roleplay">Roleplay Guidelines</a></li>
+            <li><a href="#criminal">Criminal Activity</a></li>
+            <li><a href="#law-enforcement">Law Enforcement</a></li>
+            <li><a href="#vehicles">Vehicles & Chases</a></li>
+            <li><a href="#zones">Safe Zones</a></li>
+        </ul>
+    </nav>
 
-    <!-- Important Info -->
-    <section class="content-section">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <span class="info-card-icon">⚡</span>
-                    <h3>Voluntary Support</h3>
-                    <p>Donations are support contributions, not purchases. They help maintain and improve the city for everyone.</p>
+    <div class="main-container">
+        <!-- Quick Links -->
+        <div id="links" class="quick-links-section">
+            <h2 class="section-title">🔗 Community Resources</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <span class="link-icon">💬</span>
+                    <h3>Discord Server</h3>
+                    <a href="https://discord.gg/5swa2GdXNP">Click me</a>
                 </div>
-                <div class="info-card">
-                    <span class="info-card-icon">🎨</span>
-                    <h3>Visual-Only Perks</h3>
-                    <p>All rewards are cosmetic and don't provide gameplay advantages. Balance stays equal for all players.</p>
+                <div class="link-card">
+                    <span class="link-icon">👮</span>
+                    <h3>Police Division</h3>
+                    <a href="#">Coming Soon</a>
                 </div>
-                <div class="info-card">
-                    <span class="info-card-icon">🛡️</span>
-                    <h3>TOS Compliant</h3>
-                    <p>Everything follows FiveM and CFX Terms of Service. We maintain strict compliance standards.</p>
+                <div class="link-card">
+                    <span class="link-icon">🏥</span>
+                    <h3>Medical Services</h3>
+                    <a href="#">Coming Soon</a>
                 </div>
-            </div>
-
-            <div class="alert-box alert-warning">
-                <span class="alert-icon">⚠️</span>
-                <div class="alert-content">
-                    <strong>Important Notice</strong>
-                    <p>Donations are voluntary support. If your asset becomes broken, banned, or violates TOS, it will be removed without refund. This policy protects server health and ensures fairness for the entire community.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Skin Slot System -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">🧍‍♂️</div>
-                <h2 class="section-title">Skin Slot Compounding System</h2>
-                <p class="section-description">
-                    Each character supports up to 45 skin slots. Prices compound gradually to balance customization with server performance and maintain fairness.
-                </p>
-            </div>
-
-            <div class="pricing-container">
-                <div class="pricing-header">
-                    <h3>Skin Slot Pricing (1 – 45)</h3>
-                    <p>Each slot increases memory usage, so prices compound to keep the server optimized</p>
+                <div class="link-card">
+                    <span class="link-icon">🏘️</span>
+                    <h3>Property Listings</h3>
+                    <a href="#">Coming Soon</a>
                 </div>
 
-                <div class="alert-box alert-info">
-                    <span class="alert-icon">💡</span>
-                    <div class="alert-content">
-                        <strong>Why Compounding?</strong>
-                        <ul>
-                            <li>Maintains fair server performance</li>
-                            <li>Prevents texture overload and lag</li>
-                            <li>Balances customization with optimization needs</li>
-                        </ul>
-                    </div>
+                <div class="link-card">
+                    <span class="link-icon">✅</span>
+                    <h3>Character Approval</h3>
+                    <a href="https://discord.com/channels/1393682185675866182/1393682190298120194">whitelist app</a>
                 </div>
-
-
-
-            <!-- Skin Tone Reference -->
-            <div class="pricing-container">
-                <div class="pricing-header">
-                    <h3>🎨 Skin Tone Pricing by Demand</h3>
-                    <p>Each skin tone category has unique pricing based on demand and availability</p>
-                </div>
-
-                <div class="alert-box alert-info">
-                    <span class="alert-icon">💡</span>
-                    <div class="alert-content">
-                        <strong>Demand-Based System</strong>
-                        <p>White skin tones have premium pricing ($50-$150) due to extreme demand. Other tones have more accessible pricing to ensure availability for all players.</p>
-                    </div>
-                </div>
-
-                <!-- White Skin Pricing -->
-                <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9)); border: 3px solid #FF69B4; border-radius: 20px; padding: 30px; margin: 25px 0;">
-                    <h3 style="color: #FF1493; font-size: 24px; margin-bottom: 15px; text-align: center;">👱 White Skin Tones (Premium)</h3>
-                    <p style="text-align: center; color: #6d4c7d; margin-bottom: 20px; font-weight: 600;">Slots: 0, 1, 12, 13, 21, 22, 33, 34, 42, 43, 44, 45</p>
-                    
-                    <div class="pricing-table-wrapper">
-                        <table class="pricing-table">
-                            <thead>
-                                <tr>
-                                    <th>Slot #</th>
-                                    <th>Price</th>
-                                    <th>Slot #</th>
-                                    <th>Price</th>
-                                    <th>Slot #</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>1</td><td class="price-highlight">$50</td><td>5</td><td class="price-highlight">$70</td><td>9</td><td class="price-highlight">$105</td></tr>
-                                <tr><td>2</td><td class="price-highlight">$55</td><td>6</td><td class="price-highlight">$80</td><td>10</td><td class="price-highlight">$120</td></tr>
-                                <tr><td>3</td><td class="price-highlight">$60</td><td>7</td><td class="price-highlight">$90</td><td>11</td><td class="price-highlight">$135</td></tr>
-                                <tr><td>4</td><td class="price-highlight">$65</td><td>8</td><td class="price-highlight">$100</td><td>12</td><td class="price-highlight">$150 (Max)</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Arab Skin Pricing -->
-                <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85)); border: 2px solid #FFB3D9; border-radius: 20px; padding: 30px; margin: 25px 0;">
-                    <h3 style="color: #FF69B4; font-size: 22px; margin-bottom: 15px; text-align: center;">🧕 Arab Skin Tones</h3>
-                    <p style="text-align: center; color: #6d4c7d; margin-bottom: 20px; font-weight: 600;">Slots: 10, 11, 20, 31, 32, 41</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong>Slot 1:</strong> <span style="color: #FF1493; font-weight: 800;">$50</span></div>
-                        <div><strong>Slot 2:</strong> <span style="color: #FF1493; font-weight: 800;">$60</span></div>
-                        <div><strong>Slot 3:</strong> <span style="color: #FF1493; font-weight: 800;">$70</span></div>
-                        <div><strong>Slot 4:</strong> <span style="color: #FF1493; font-weight: 800;">$85</span></div>
-                        <div><strong>Slot 5:</strong> <span style="color: #FF1493; font-weight: 800;">$100</span></div>
-                        <div><strong>Slot 6:</strong> <span style="color: #FF1493; font-weight: 800;">$120</span></div>
-                    </div>
-                </div>
-
-                <!-- Latino Skin Pricing -->
-                <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85)); border: 2px solid #FFB3D9; border-radius: 20px; padding: 30px; margin: 25px 0;">
-                    <h3 style="color: #FF69B4; font-size: 22px; margin-bottom: 15px; text-align: center;">🧑🏽 Latino Skin Tones</h3>
-                    <p style="text-align: center; color: #6d4c7d; margin-bottom: 20px; font-weight: 600;">Slots: 4, 5, 16, 25, 26, 37, 38</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong>Slot 1:</strong> <span style="color: #FF1493; font-weight: 800;">$50</span></div>
-                        <div><strong>Slot 2:</strong> <span style="color: #FF1493; font-weight: 800;">$58</span></div>
-                        <div><strong>Slot 3:</strong> <span style="color: #FF1493; font-weight: 800;">$68</span></div>
-                        <div><strong>Slot 4:</strong> <span style="color: #FF1493; font-weight: 800;">$80</span></div>
-                        <div><strong>Slot 5:</strong> <span style="color: #FF1493; font-weight: 800;">$95</span></div>
-                        <div><strong>Slot 6:</strong> <span style="color: #FF1493; font-weight: 800;">$110</span></div>
-                        <div><strong>Slot 7:</strong> <span style="color: #FF1493; font-weight: 800;">$130</span></div>
-                    </div>
-                </div>
-
-                <!-- Pakistani Skin Pricing -->
-                <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85)); border: 2px solid #FFB3D9; border-radius: 20px; padding: 30px; margin: 25px 0;">
-                    <h3 style="color: #FF69B4; font-size: 22px; margin-bottom: 15px; text-align: center;">🧔 Pakistani Skin Tones</h3>
-                    <p style="text-align: center; color: #6d4c7d; margin-bottom: 20px; font-weight: 600;">Slots: 8, 9, 19, 29, 30</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong>Slot 1:</strong> <span style="color: #FF1493; font-weight: 800;">$50</span></div>
-                        <div><strong>Slot 2:</strong> <span style="color: #FF1493; font-weight: 800;">$55</span></div>
-                        <div><strong>Slot 3:</strong> <span style="color: #FF1493; font-weight: 800;">$65</span></div>
-                        <div><strong>Slot 4:</strong> <span style="color: #FF1493; font-weight: 800;">$78</span></div>
-                        <div><strong>Slot 5:</strong> <span style="color: #FF1493; font-weight: 800;">$95</span></div>
-                    </div>
-                </div>
-
-                <!-- Chinese Skin Pricing -->
-                <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85)); border: 2px solid #FFB3D9; border-radius: 20px; padding: 30px; margin: 25px 0;">
-                    <h3 style="color: #FF69B4; font-size: 22px; margin-bottom: 15px; text-align: center;">🧑‍🦱 Chinese Skin Tones</h3>
-                    <p style="text-align: center; color: #6d4c7d; margin-bottom: 20px; font-weight: 600;">Slots: 6, 7, 17, 18, 27, 28, 39, 40</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong>Slot 1:</strong> <span style="color: #FF1493; font-weight: 800;">$50</span></div>
-                        <div><strong>Slot 2:</strong> <span style="color: #FF1493; font-weight: 800;">$55</span></div>
-                        <div><strong>Slot 3:</strong> <span style="color: #FF1493; font-weight: 800;">$62</span></div>
-                        <div><strong>Slot 4:</strong> <span style="color: #FF1493; font-weight: 800;">$72</span></div>
-                        <div><strong>Slot 5:</strong> <span style="color: #FF1493; font-weight: 800;">$85</span></div>
-                        <div><strong>Slot 6:</strong> <span style="color: #FF1493; font-weight: 800;">$100</span></div>
-                        <div><strong>Slot 7:</strong> <span style="color: #FF1493; font-weight: 800;">$115</span></div>
-                        <div><strong>Slot 8:</strong> <span style="color: #FF1493; font-weight: 800;">$135</span></div>
-                    </div>
-                </div>
-
-                <!-- Black Skin Pricing -->
-                <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 228, 233, 0.85)); border: 2px solid #FFB3D9; border-radius: 20px; padding: 30px; margin: 25px 0;">
-                    <h3 style="color: #FF69B4; font-size: 22px; margin-bottom: 15px; text-align: center;">🧑🏿 Black Skin Tones</h3>
-                    <p style="text-align: center; color: #6d4c7d; margin-bottom: 20px; font-weight: 600;">Slots: 2, 3, 14, 15, 23, 24, 35, 36</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong>Slot 1:</strong> <span style="color: #FF1493; font-weight: 800;">$50</span></div>
-                        <div><strong>Slot 2:</strong> <span style="color: #FF1493; font-weight: 800;">$54</span></div>
-                        <div><strong>Slot 3:</strong> <span style="color: #FF1493; font-weight: 800;">$60</span></div>
-                        <div><strong>Slot 4:</strong> <span style="color: #FF1493; font-weight: 800;">$68</span></div>
-                        <div><strong>Slot 5:</strong> <span style="color: #FF1493; font-weight: 800;">$78</span></div>
-                        <div><strong>Slot 6:</strong> <span style="color: #FF1493; font-weight: 800;">$90</span></div>
-                        <div><strong>Slot 7:</strong> <span style="color: #FF1493; font-weight: 800;">$105</span></div>
-                        <div><strong>Slot 8:</strong> <span style="color: #FF1493; font-weight: 800;">$125</span></div>
-                    </div>
-                </div>
-
-                <div class="alert-box alert-warning">
-                    <span class="alert-icon">📊</span>
-                    <div class="alert-content">
-                        <strong>How The System Works</strong>
-                        <p><strong>Each skin tone has its own independent pricing:</strong></p>
-                        <ul>
-                            <li><strong>White Skins:</strong> Highest demand = steepest pricing ($50 → $150 max for 12 slots)</li>
-                            <li><strong>Arab Skins:</strong> Moderate-high pricing ($50 → $120 for 6 slots)</li>
-                            <li><strong>Latino Skins:</strong> Balanced pricing ($50 → $130 for 7 slots)</li>
-                            <li><strong>Pakistani Skins:</strong> Lower pricing ($50 → $95 for 5 slots)</li>
-                            <li><strong>Chinese Skins:</strong> Accessible pricing ($50 → $135 for 8 slots)</li>
-                            <li><strong>Black Skins:</strong> Most accessible ($50 → $125 for 8 slots)</li>
-                        </ul>
-                        <p style="margin-top: 12px;"><em>Each category counts slots independently - your first Arab skin is always $50, regardless of other skins you own.</em></p>
-                    </div>
+                <div class="link-card">
+                    <span class="link-icon">💝</span>
+                    <h3>Support Us</h3>
+                    <a href="https://killiumx.github.io/xoxodonation.github.io/">Coming Soon</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Custom Donation Options -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">🚗</div>
-                <h2 class="section-title">Custom Donation Options</h2>
-                <p class="section-description">
-                    Exclusive customization options to make your character truly unique
-                </p>
+        <!-- Community Standards -->
+        <div id="community" class="rule-section">
+            <h2>🌟 Community Standards & Conduct</h2>
+            
+            <div class="alert alert-danger">
+                <strong>⚠️ Legal Disclaimer</strong>
+                <p>By joining XOXO RP, you acknowledge that mature content, language, and themes may be present. The server administration is not responsible for player interactions or content encountered during gameplay.</p>
             </div>
 
-            <div class="options-grid">
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">💎</span>
-                        <span class="option-title">Custom Chain</span>
-                    </div>
-                    <p class="option-description">Jewelry designed for you.</p>
-                    <div class="option-price">$60+</div>
-                </div>
+            <h3>Core Community Principles</h3>
+            <ul>
+                <li><strong>Support Protocol:</strong> Never contact staff members directly via DMs. Submit a ticket through our support system or use the in-game /report command for immediate assistance.</li>
+                <li><strong>Behavioral Standards:</strong> Repeated violations or disruptive behavior will result in removal from the community at staff discretion.</li>
+                <li><strong>Mutual Respect:</strong> Treat all community members with dignity. Griefing, targeted harassment, and toxic behavior are prohibited.</li>
+                <li><strong>Immersion Priority:</strong> Always consider how your actions affect other players' roleplay experiences. Quality RP benefits everyone.</li>
+                <li><strong>Communication Guidelines:</strong> External voice platforms (Discord calls, etc.) are forbidden during active gameplay. All IC communication must occur in-server.</li>
+                <li><strong>Rule Integrity:</strong> Attempting to bypass or exploit loopholes in server rules is prohibited and will be addressed by staff.</li>
+                <li><strong>Fair Play:</strong> Exploiting bugs or game mechanics for personal advantage results in immediate removal. Report all bugs to development.</li>
+                <li><strong>Conflict Resolution:</strong> Repeatedly targeting the same player after previous encounters have concluded constitutes harassment.</li>
+                <li><strong>Reporting Violations:</strong> Never break character to address rule violations. Complete the scenario, then file a report.</li>
+                <li><strong>Account Integrity:</strong> Ban evasion through alternate accounts is strictly forbidden. Appeal bans through proper channels.</li>
+            </ul>
 
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">➕</span>
-                        <span class="option-title">Chain Texture</span>
-                    </div>
-                    <p class="option-description">Add extra texture layers to your custom chain for enhanced detail.</p>
-                    <div class="option-price">+$5 each</div>
-                </div>
-
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">🔫</span>
-                        <span class="option-title">Weapon Skin</span>
-                    </div>
-                    <p class="option-description">1-of-1 unique weapon appearance with balanced stats.</p>
-                    <div class="option-price">$100 – $150</div>
-                </div>
-
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">🚘</span>
-                        <span class="option-title">Supporter Vehicle</span>
-                    </div>
-                    <p class="option-description">Exclusive custom car that only you can drive.</p>
-                    <div class="option-price">$75</div>
-                </div>
-
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">🏠</span>
-                        <span class="option-title">Custom MLO</span>
-                    </div>
-                    <p class="option-description">Estate House</p>
-                    <div class="option-price">
-                        <strong>Estate Cost:</strong> $100<br>
-                        <strong>Import (MLO):</strong> $300
-                    </div>
-                    <p class="option-note">We provide estate houses for sale to help reduce MLO import.</p>
-                </div>
-
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">🧰</span>
-                        <span class="option-title">Optimization Fee</span>
-                    </div>
-                    <p class="option-description">Required for large or unoptimized file processing.</p>
-                    <div class="option-price">$10 – $25</div>
-                </div>
-
-                <div class="option-card">
-                    <div class="option-header">
-                        <span class="option-icon">🪪</span>
-                        <span class="option-title">Name Change</span>
-                    </div>
-                    <p class="option-description">Rename your RP character with admin approval.</p>
-                    <div class="option-price">$5</div>
-                </div>
+            <div class="zero-tolerance-box">
+                <h3>🚫 Zero Tolerance Policy</h3>
+                <p><strong>XOXO RP maintains a zero-tolerance policy for the following:</strong></p>
+                <ul>
+                    <li>✖️ Discriminatory language or slurs of any kind</li>
+                    <li>✖️ Harassment, bullying, or targeted toxicity</li>
+                    <li>✖️ Sexist, racist, or homophobic behavior</li>
+                    <li>✖️ "Win at all costs" mentality that ruins RP quality</li>
+                    <li>✖️ Out-of-character drama or conflicts</li>
+                </ul>
+                <p style="margin-top: 1.5rem;"><strong>This policy applies to:</strong> Discord communications, in-game interactions, personal streams, and all community platforms.</p>
             </div>
 
-            <div class="alert-box alert-info">
-                <span class="alert-icon">⚖️</span>
-                <div class="alert-content">
-                    <strong>Balance Maintained</strong>
-                    <p>All custom options are visual-only rewards. Gameplay balance remains equal for everyone, ensuring fair competition and authentic roleplay experiences.</p>
-                </div>
+            <div class="alert alert-warning">
+                <strong>💜 Respect & Inclusivity Standard</strong>
+                <p>XOXO RP is committed to maintaining a welcoming environment for all players. Any form of disrespect, inappropriate conduct, or harassment toward any community member will result in immediate disciplinary action. We prioritize creating safe, inclusive roleplay experiences where everyone feels valued.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Performance Rules -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">⚙️</div>
-                <h2 class="section-title">Performance & File Rules</h2>
-                <p class="section-description">
-                    Technical specifications to maintain server optimization and stability
-                </p>
-            </div>
+        <!-- Roleplay Guidelines -->
+        <div id="roleplay" class="rule-section">
+            <h2>🎭 Roleplay Quality Standards</h2>
 
-            <div class="pricing-container">
-                <div class="pricing-table-wrapper">
-                    <table class="pricing-table">
-                        <thead>
-                            <tr>
-                                <th>Asset Type</th>
-                                <th>Recommended Max</th>
-                                <th>Hard Limit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Vehicle .ytd</td>
-                                <td>8 – 16 MB</td>
-                                <td class="price-highlight">32 MB</td>
-                            </tr>
-                            <tr>
-                                <td>MLO Total Size</td>
-                                <td>40 – 60 MB</td>
-                                <td class="price-highlight">80 MB</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <h3>Meta Gaming (Immediate Ban)</h3>
+            <p>Using out-of-character information to influence in-character decisions is strictly prohibited.</p>
+            <ul>
+                <li>No using Twitch streams or recordings to track player locations or activities</li>
+                <li>No referencing Discord conversations or out-of-game communications in RP</li>
+                <li>No sharing character information across different characters you control</li>
+            </ul>
 
-                <div class="alert-box alert-warning">
-                    <span class="alert-icon">⚠️</span>
-                    <div class="alert-content">
-                        <strong>Enforcement Policy</strong>
-                        <p>Assets exceeding limits, breaking TOS, or causing lag will be removed without refund. This ensures optimal performance for all players.</p>
-                    </div>
-                </div>
-            </div>
+            <h3>Power Gaming (Severe Offense)</h3>
+            <p>Manipulating game mechanics or scenarios to gain unfair advantages destroys RP quality.</p>
+            <ul>
+                <li>Exploiting bugs or glitches for competitive advantage</li>
+                <li>Using properties or instances to escape active RP scenarios</li>
+                <li>Transferring assets or information between unrelated characters</li>
+                <li>Logging out during active scenarios to avoid consequences (especially 48-hour incapacitation)</li>
+            </ul>
+
+            <h3>Combat Engagement Standards</h3>
+            <ul>
+                <li><strong>Initiation Required:</strong> RDM (Random Deathmatch) and VDM (Vehicular Deathmatch) are absolutely forbidden.</li>
+                <li><strong>Context Matters:</strong> All violence must have proper roleplay buildup and justification.</li>
+                <li><strong>Contract RP:</strong> Assassination scenarios require the target to have reasonable suspicion something may occur.</li>
+                <li><strong>Vehicle Attacks:</strong> Using vehicles as weapons without proper context equals VDM.</li>
+                <li><strong>Verbal Initiation:</strong> All hostile actions must begin with verbal communication or threats.</li>
+                <li><strong>Connection Issues:</strong> If disconnected during a scenario, you must return immediately upon reconnecting.</li>
+                <li><strong>Menu Abuse:</strong> Using player menus or commands to gain advantages during confrontations is prohibited.</li>
+                <li><strong>Information Gathering:</strong> You cannot "listen through walls" - only information from your physical location is valid.</li>
+                <li><strong>Pre-Conflict Warning:</strong> Before major confrontations, establish contact through phones, social media, or other IC methods.</li>
+            </ul>
+
+            <h3>Additional RP Standards</h3>
+            <ul>
+                <li>Only involve yourself in others' RP when you have legitimate IC reasons</li>
+                <li>Physical limitations apply: no dropping items while restrained, no phone use while incapacitated, maximum two passengers on motorcycles</li>
+            </ul>
         </div>
-    </section>
 
-    <!-- Non-Refund Policy -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">❌</div>
-                <h2 class="section-title">Non-Refund / Removal Policy</h2>
-                <p class="section-description">
-                    Important terms to understand before making a donation
-                </p>
-            </div>
+        <!-- Communication Standards -->
+        <div class="rule-section">
+            <h2>📡 Communication Standards</h2>
 
-            <div class="alert-box alert-danger">
-                <span class="alert-icon">🔴</span>
-                <div class="alert-content">
-                    <strong>By Donating, You Agree:</strong>
-                    <ul>
-                        <li>All donations are final and non-refundable</li>
-                        <li>Any asset that becomes ineffective, banned, broken, or non-TOS-friendly may be removed without refund</li>
-                        <li>Staff may replace or delete content anytime to maintain optimization and compliance</li>
-                        <li>These rules protect server health and fairness for everyone</li>
-                    </ul>
-                </div>
-            </div>
+            <h3>Platform Guidelines</h3>
+            <ul>
+                <li>Keep out-of-character channels drama-free and respectful</li>
+                <li><strong>Never DM staff directly</strong> - Always use the ticket system for support requests</li>
+            </ul>
+
+            <h3>In-Game Communication</h3>
+            <ul>
+                <li>All character interactions must happen in-game only</li>
+                <li>Mute Discord when engaging in roleplay to maintain immersion</li>
+            </ul>
+
+            <h3>Equipment Usage During RP</h3>
+            <ul>
+                <li>Radios are inaccessible while restrained or handcuffed</li>
+                <li>Mobile phones cannot be used when tied up or unconscious</li>
+            </ul>
+
+            <h3>Out-of-Character Chat Etiquette</h3>
+            <ul>
+                <li>OOC chat is for quick clarifications only, not extended conversations</li>
+                <li>Never spam or misuse OOC for in-character purposes</li>
+            </ul>
         </div>
-    </section>
 
-    <!-- How to Donate -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">🪙</div>
-                <h2 class="section-title">How to Donate</h2>
-                <p class="section-description">
-                    Simple process to get your custom perks approved and delivered
-                </p>
-            </div>
+        <!-- Criminal Activity -->
+        <div id="criminal" class="rule-section">
+            <h2>💰 Criminal Activity Guidelines</h2>
 
-            <div class="steps-container">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-title">Open a Ticket</div>
-                    <p class="step-description">Visit the donations or support channel and create a new ticket to begin your request.</p>
-                </div>
+            <h3>Robbery Standards</h3>
+            <ul>
+                <li>Players may only be robbed of cash and items they're physically carrying - bank accounts are protected</li>
+                <li><strong>Selective Theft:</strong> Taking every item from someone's inventory is prohibited. Only take items that make sense contextually</li>
+                <li>Victims must have their hands raised before robbery can occur</li>
+                <li>Camping at job locations to steal materials is forbidden (kidnapping workers is allowed)</li>
+                <li>Only the original group who started the heist may participate - no reinforcements</li>
+                <li>Motorcycles cannot be stored inside buildings</li>
+                <li>Motorcycles can only be used in crimes when 3+ police officers are active</li>
+                <li>Using personal vehicles in heists results in extended impound times (1-4 hours) and higher fees</li>
+            </ul>
 
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-title">Describe Your Request</div>
-                    <p class="step-description">Tell us what you'd like: skin slot, vehicle, chain, weapon, MLO, or other customization.</p>
-                </div>
+            <h3>Hostage Situations & Kidnappings</h3>
+            <ul>
+                <li>Officers can only be taken hostage when 4+ officers are on duty</li>
+                <li>Civilians can be kidnapped regardless of police presence</li>
+                <li>Maximum hostage duration: 20 minutes (unless all parties agree to continue)</li>
+                <li>Repeatedly targeting the same victim is considered griefing</li>
+                <li>Hostages cannot ride on motorcycles</li>
+                <li><strong>Random Selection Required:</strong> Hostages must be randomly selected strangers - using friends or associates will result in punishment</li>
+            </ul>
 
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-title">Staff Review</div>
-                    <p class="step-description">Our team will review your request, confirm technical limits, and provide total cost.</p>
-                </div>
+            <h3>Bank & Store Heists</h3>
+            <ul>
+                <li>ATM heists with multiple participants require a car with seats (no motorcycles)</li>
+                <li>Abandoning one ATM robbery to start another is considered an exploit</li>
+                <li>Major heists (banks, Fleeca, Paleto) require a hostage for negotiations</li>
+                <li>Solo crimes (houses, convenience stores, ATMs, jewelry stores) don't need hostages</li>
+                <li>All hostages must be strangers - no staged scenarios with known associates</li>
+            </ul>
 
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <div class="step-title">Payment & Delivery</div>
-                    <p class="step-description">After approval, receive payment info and estimated delivery timeframe for your custom content.</p>
-                </div>
-            </div>
+            <h3>Hostage Management Protocol</h3>
+            <ul>
+                <li>Hostages must be guarded at gunpoint constantly - unguarded hostages can be rescued without negotiation</li>
+                <li>Release hostages immediately during robbery cooldown periods</li>
+                <li>Provide proof of life to law enforcement in person when requested</li>
+            </ul>
+
+            <h3>Criminal Behavior Standards</h3>
+            <ul>
+                <li>No claiming territory at drug processing, money laundering, or black market sites</li>
+                <li>EMS personnel are off-limits while performing duties (personal conflicts are separate)</li>
+                <li>Using garages or properties to escape police pursuit results in strikes</li>
+                <li>Cop baiting (provoking officers unnecessarily) is prohibited</li>
+                <li>/scene command is not for graffiti - only spray cans can be used for tagging</li>
+                <li>No offensive or hateful content via /scene commands</li>
+                <li>Attacking public servants (EMS, police) can extend sentences to 20 months</li>
+                <li>Criminals must respect police authority - no loitering at crime scenes after warnings</li>
+            </ul>
+
+            <h3>Scene Return Policy</h3>
+            <ul>
+                <li>Cannot return to a roleplay scene after you've completely left</li>
+                <li>If police are down and being revived, criminals cannot re-engage</li>
+                <li>Receiving medical treatment removes you from the scenario permanently</li>
+                <li>"Clear" means traveling more than one block away with broken line of sight</li>
+            </ul>
         </div>
-    </section>
 
-    <!-- Thank You Section -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-icon">❤️</div>
-                <h2 class="section-title">Thank You for Supporting the City</h2>
-                <p class="section-description">
-                    Every donation directly funds these essential services
-                </p>
-            </div>
+        <!-- Law Enforcement -->
+        <div id="law-enforcement" class="rule-section">
+            <h2>👮 Law Enforcement Protocols</h2>
 
-            <div class="support-grid">
-                <div class="support-item">
-                    <span class="support-icon">💾</span>
-                    <div class="support-label">Server Hosting</div>
-                </div>
-                <div class="support-item">
-                    <span class="support-icon">⚙️</span>
-                    <div class="support-label">Development & Fixes</div>
-                </div>
-                <div class="support-item">
-                    <span class="support-icon">🏙️</span>
-                    <div class="support-label">Events & Features</div>
-                </div>
-                <div class="support-item">
-                    <span class="support-icon">👮</span>
-                    <div class="support-label">Staff Management</div>
-                </div>
-            </div>
+            <h3>Police Conduct</h3>
+            <ul>
+                <li>Issue citations to individuals excessively loitering in public spaces</li>
+                <li>Bodycam footage is required for reports - without it, officers are treated as civilians</li>
+                <li>Officers entering active gang conflict zones may be engaged immediately</li>
+            </ul>
 
-            <div class="alert-box alert-info">
-                <span class="alert-icon">💙</span>
-                <div class="alert-content">
-                    <p style="text-align: center; font-size: 17px; margin: 0;">
-                        We appreciate everyone who helps keep the city alive, fair, and fun for all players. Your support makes XOXO RP possible!
-                    </p>
-                </div>
+            <h3>Corruption Limitations</h3>
+            <ul>
+                <li>Minor corruption (small bribes) is only permitted for officers below Sergeant rank</li>
+                <li>On-duty EMS and police cannot engage in corrupt activities</li>
+                <li>Selling department equipment, weapons, or evidence results in immediate termination and OOC discipline</li>
+            </ul>
+
+            <h3>Engagement with Law Enforcement</h3>
+            <div class="alert alert-info">
+                <strong>🎭 Roleplay is Mandatory</strong>
+                <p>Once police arrive, quality roleplay is required from all parties involved.</p>
             </div>
+            <ul>
+                <li>Engage with situations realistically - not every encounter should become a chase</li>
+                <li>Comply with lawful orders when appropriate for the scenario</li>
+                <li>Breaking free from restraints or escaping custody authorizes lethal force</li>
+                <li>Officers aiming lethal weapons at you constitutes threat initiation (tasers do not count)</li>
+                <li>After two failed taser attempts, you may engage with lethal force</li>
+                <li>If choosing to shoot at officers, you must give them time to draw weapons</li>
+            </ul>
+
+            <h3>Use of Force Authorization</h3>
+            <ul>
+                <li><strong>Weapon Brandishing:</strong> Pointing firearms at officers or civilians justifies lethal response</li>
+                <li><strong>Tire Deflation:</strong> Officers may shoot tires of vehicles being used for escape</li>
+                <li><strong>Hostage Rescue:</strong> If demands are unclear or unreasonable, police must act to save hostages</li>
+                <li><strong>Property Theft:</strong> Attempting to steal police vehicles or equipment authorizes shooting</li>
+                <li><strong>Pursuit Tools:</strong> Spike strips are authorized in chases and can be pre-deployed at illegally parked crime vehicles</li>
+            </ul>
+
+            <h3>Searches, Warrants & Arrests</h3>
+            <ul>
+                <li>Active felony warrants authorize entry into owned properties</li>
+                <li>Vehicle searches only require probable cause - no warrant needed</li>
+                <li>Miranda rights must be read - statements without them are inadmissible in court, but arrest remains valid</li>
+            </ul>
         </div>
-    </section>
+
+        <!-- Vehicles & Chases -->
+        <div id="vehicles" class="rule-section">
+            <h2>🚗 Vehicle Standards & Pursuit Rules</h2>
+
+            <h3>Vehicle Protection</h3>
+            <ul>
+                <li>Emergency vehicles (EMS and police) cannot be stolen under any circumstances</li>
+                <li>Department-issued weapons stay with officers - criminals keep weapons taken from other criminals</li>
+                <li>When police successfully box in a vehicle, criminals must stop - they may flee on foot, steal another vehicle, or engage in combat</li>
+                <li>Ramming through police barriers is prohibited</li>
+            </ul>
+
+            <h3>Pursuit Engagement Rules</h3>
+            <ul>
+                <li>Valid reason required to flee police (active warrant, contraband, etc.) - speeding alone isn't justification</li>
+                <li>No outside assistance - only those involved in the original crime can participate</li>
+                <li>Drive realistically - no off-roading sports cars, ramp jumps, or impossible maneuvers</li>
+            </ul>
+
+            <h3>Exclusive Vehicle Transfers</h3>
+            <ul>
+                <li>One-of-one (1/1) vehicles are permanently bound to the original purchaser</li>
+                <li>These vehicles cannot be sold, traded, or given away normally</li>
+                <li>Exception: Submit a transfer request ticket via Discord for special circumstances</li>
+            </ul>
+        </div>
+
+        <!-- Safe Zones -->
+        <div id="zones" class="rule-section">
+            <h2>🟢 Protected Zones & Territories</h2>
+
+            <div class="alert alert-danger">
+                <strong>⚠️ Critical Warning</strong>
+                <p>Killing anyone inside a designated safe zone results in complete character deletion.</p>
+            </div>
+
+            <h3>Safe Zone Guidelines</h3>
+            <ul>
+                <li>All safe zones remain in-character - no OOC exemptions exist</li>
+                <li>Camping or excessive loitering in safe zones is prohibited</li>
+                <li>No vehicle theft or robberies within safe zone boundaries</li>
+                <li>These areas are for social interaction and passive roleplay only</li>
+                <li>Criminal activity must occur far from safe zone borders to prevent exploitation</li>
+            </ul>
+
+            <h3>Designated Protected Locations</h3>
+            <ul>
+                <li>All commercial business locations (varies by ownership)</li>
+                <li>Medical facilities and 2-block surrounding radius</li>
+                <li>Shopping center</li>
+                <li>Clothing boutiques and adjacent parking areas (24-hour ban for violence)</li>
+                <li>Firearm retailers and parking zones</li>
+                <li>Community event locations (announced in Discord)</li>
+                <li>Entertainment venue</li>
+                <li>Crafting stations (no camping or theft)</li>
+                <li>Police impound facility</li>
+            </ul>
+        </div>
+
+        <!-- Evidence Standards -->
+        <div class="rule-section">
+            <h2>🎥 Evidence & Recording Requirements</h2>
+
+            <div class="alert alert-danger">
+                <strong>📹 Recording Mandate</strong>
+                <p>No evidence = No case. Video proof is mandatory for all player reports.</p>
+            </div>
+
+            <h3>Recording Standards</h3>
+            <ul>
+                <li>Recording software is mandatory (Medal.tv, GeForce Experience, OBS, etc.)</li>
+                <li>All clips must include clear audio from both sides of the interaction</li>
+                <li>Your microphone audio must be captured and audible</li>
+                <li>Reports lacking complete audio will be dismissed</li>
+                <li>Minimum clip duration: 1-2 minutes (longer for complex situations)</li>
+            </ul>
+        </div>
+
+        <!-- Appearance Standards -->
+        <div class="rule-section">
+            <h2>👗 Character Appearance Guidelines</h2>
+
+            <h3>Clothing Restrictions</h3>
+            <ul>
+                <li>Bulletproof helmets are banned due to gameplay imbalance</li>
+                <li>Organization-specific attire (bandanas, colors, insignia) is restricted to verified members only</li>
+                <li>Law enforcement and medical uniforms are role-exclusive</li>
+                <li>Character model bugs (missing limbs, transparency glitches) must be fixed immediately</li>
+            </ul>
+        </div>
+
+        <!-- Administrative Procedures -->
+        <div class="rule-section">
+            <h2>⚖️ Administrative Procedures</h2>
+
+            <h3>Staff Interaction Protocol</h3>
+            <ul>
+                <li>Never interfere in another player's administrative situation - doing so may result in your own punishment</li>
+                <li>Only the reporting party should speak during case reviews</li>
+                <li>Follow all staff instructions immediately and completely</li>
+                <li>Video evidence is required - submit through Discord ticket system</li>
+                <li>Disrespecting staff members results in bans or extended jail sentences</li>
+                <li>Spamming /report commands will result in kicks, then bans if continued</li>
+                <li>Staff may confiscate contraband obtained through rule violations</li>
+            </ul>
+        </div>
+
+        <!-- Financial & Asset Rules -->
+        <div class="rule-section">
+            <h2>💵 Financial Protection & Asset Management</h2>
+
+            <h3>Money Security</h3>
+            <ul>
+                <li>Always deposit funds in your bank account - cash carried is at your own risk</li>
+                <li>Large cash amounts (clean or dirty) risk being flagged by anti-cheat systems</li>
+                <li>Only banked funds are eligible for administrative reimbursement</li>
+            </ul>
+
+            <h3>Exclusive Firearm Ownership</h3>
+            <ul>
+                <li>One-of-one (1/1) firearms are permanently bound to the original purchaser</li>
+                <li>Unauthorized possession of someone else's 1/1 weapon is a bannable offense</li>
+                <li>Selling, gifting, or transferring 1/1 weapons is absolutely forbidden</li>
+                <li>Ownership verification requires submitting clear photos through Discord tickets</li>
+                <li>All 1/1 weapons require CPD whitelisting authorization</li>
+                <li>Broken or depleted weapons must be repaired through in-character services - no administrative assistance</li>
+            </ul>
+        </div>
+
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer-brand">XOXO RP - Community Support</p>
-        <p>Your contributions help sustain the city and ensure a high-quality experience</p>
-        <p>All transactions secure • TOS compliant • Community focused</p>
-        <p style="margin-top: 25px; opacity: 0.65;">© 2025 XOXO RP - All Rights Reserved</p>
+        <p class="footer-brand">XOXO RP</p>
+        <p>Elite FiveM Roleplay Community</p>
+        <p>Quality RP • Respectful Environment • Active Staff</p>
+        <p style="margin-top: 1.5rem; opacity: 0.7;">© 2025 XOXO RP - All Rights Reserved</p>
     </footer>
 
     <!-- Back to Top -->
     <div class="back-to-top" id="backToTop">↑</div>
 
     <script>
-        const navbar = document.getElementById('navbar');
+        // Smooth scroll navigation
+        document.querySelectorAll('.nav-bar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Back to top button
         const backToTop = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 60) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            if (window.scrollY > 400) {
+            if (window.scrollY > 500) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
@@ -1448,26 +1005,47 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        document.querySelector('.brand').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        const cards = document.querySelectorAll('.option-card, .info-card, .step-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        // 3D card tilt effect
+        document.querySelectorAll('.link-card, .rule-section').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.rule-section, .link-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
         });
     </script>
 </body>
